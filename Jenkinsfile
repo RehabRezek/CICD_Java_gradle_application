@@ -5,7 +5,13 @@ pipeline{
     }
     stages{
         stage("sonar quality check"){
-          
+           agent 
+        {
+         docker{
+           image 'amazoncorretto:17'
+        }  
+
+         } 
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
