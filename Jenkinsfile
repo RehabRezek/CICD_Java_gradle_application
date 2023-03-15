@@ -8,7 +8,7 @@ pipeline{
            agent 
         {
          docker{
-           image 'amazoncorretto:17'
+           image 'openjdk:11'
         }  
 
          } 
@@ -16,6 +16,7 @@ pipeline{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
                             sh 'chmod +x gradlew'
+			    sh 'sleep 5m'
                             sh './gradlew sonarqube --stacktrace'
                     }
 
